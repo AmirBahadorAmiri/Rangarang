@@ -3,22 +3,22 @@
 </p>
 
 <p align="center">
-  <img src="assets/logo.svg" width="120" title="Rangban">
+  <img src="extension/logo.svg" width="400" title="Rangarang Logo">
 </p>
 
-<h1 align="center">Rangban 🎨</h1>
-<p align="center"><b>Color Palette Manager for Designers & Developers</b></p>
+# Rangarang (رنگارنگ) 🎨
+### Local-first color palette manager for Chrome
 
-<p align="center">
-  Create, organize, and export color palettes with a Persian interface
-</p>
+**Rangarang** is a Chrome extension for creating, organizing and exporting color palettes entirely inside your browser. No PHP server, no database — every palette stays on your device.
 
 ---
 
-## 📥 Download & Install
+## 📥 Download
+
+The extension ships with this repository; no external store listing is linked here.
 
 <p align="center">
-  <a href="https://github.com/AmirBahadorAmiri/Rangban/archive/refs/heads/main.zip"><b>⬇️ Direct Download</b></a>
+  <a href="https://github.com/AmirBahadorAmiri/Rangarang/archive/refs/heads/main.zip"><b>⬇️ Download Rangarang from GitHub</b></a>
 </p>
 
 ---
@@ -26,141 +26,55 @@
 ## 🌟 Key Features
 
 ### 📋 Palette Management
-*   Create color palettes with name and description
-*   **Drag & drop to reorder colors**
-*   Quick search for palettes and colors
-*   Star important colors for quick access
+*   Create, rename and delete palettes and the colors inside them.
+*   **Drag & drop reordering:** arrange colors in exactly the order you want.
+*   Star important colors and find anything with Ctrl+K search.
 
 ### 🎨 Color Tools
-*   Add colors via HEX code or color picker
-*   Lighten and darken colors (+10% / -10%)
-*   Automatic RGB and HSL display
+*   Add colors with a HEX code or the built-in color picker.
+*   Lighten and darken a color by 10% from the right-click menu.
+*   Automatic RGB, HSL and Persian color-family labels on every swatch.
 
-### 💾 Export Options
-*   **CSS Variables** — for web projects
-*   **SCSS** — for Sass projects
-*   **JSON** — for programmatic use
-*   **Tailwind** — for Tailwind CSS config
-*   **TXT** — simple HEX list
-*   **JSON backup** — export one palette or all palettes and import them back later
+### 💾 Export & Backup
+*   Export a palette as CSS Variables, SCSS, JSON, Tailwind or TXT.
+*   **Full JSON backup:** export every palette at once and import it back later.
+*   Invalid colors are skipped and counted when importing a JSON file.
 
-### 🌙 User Interface
-*   Light and dark themes with auto-detection
-*   Sticky palette header — palette name and action buttons stay pinned at the top while scrolling colors
-*   Right-click context menu for quick actions
-*   Full RTL Persian interface
+### 🔎 Interface
+*   Full RTL Persian interface with a sticky palette header.
+*   Light and dark themes with automatic system detection.
+*   Custom right-click context menu for quick color and palette actions.
 
 ---
 
 ## 🛠 Technologies Used
 
-*   **Language:** PHP 8+
-*   **Database:** MySQL / MariaDB
-*   **Architecture:** Simple MVC (no framework)
-*   **Frontend:** HTML5, CSS3, Vanilla JavaScript
-*   **Security:** CSRF Protection, PDO Prepared Statements
+Rangarang is built with plain web technologies and Chrome's extension APIs:
+
+*   **Language:** JavaScript (no build step)
+*   **Architecture:** Chrome Extension Manifest V3 with a background service worker
+*   **Storage:** chrome.storage.local (all palettes stay on your device)
+*   **UI:** HTML5, CSS3, vanilla JavaScript
+*   **Design:** RTL Persian light/dark themes with glass accents
+*   **Backend:** none — no server and no database
 
 ---
 
 ## 🚀 Installation & Run Guide
 
-1. Install prerequisites:
-   *   XAMPP or similar PHP server
-   *   MySQL/MariaDB
-
-2. Clone the project:
-   ```bash
-   git clone https://github.com/your-repo/ColorManager.git
-   ```
-
-3. Place the project in your `htdocs` folder.
-
-4. Configure database in `config.php`:
-   ```php
-   const DB_HOST = '127.0.0.1';
-   const DB_NAME = 'rangban';
-   const DB_USER = 'root';
-   const DB_PASS = '';
-   ```
-
-5. Open in browser:
-   ```
-   http://localhost/ColorManager
-   ```
-
-> Database and tables are created automatically.
-
----
-
-## 🔄 JSON Import & Export
-
-*   **Export a single palette:** open the palette → export menu → **JSON**
-*   **Export all palettes:** header → **Export all**
-*   **Import:** header → **Import JSON**, then pick a `.json` file
-*   Importing always **creates new palettes** and never overwrites existing data. Palette names, descriptions, colors, and starred colors are restored.
-*   Both single-palette and all-palettes files are accepted. Invalid colors are skipped and reported in the result message.
-
----
-
-## 📸 Screenshot
-
-<p align="center">
-  <img alt="Rangban Screenshot" src="assets/screenshot/screen1.png" />
-</p>
-
----
-
-## 📁 Project Structure
-
+1. First, clone the project from GitHub:
+```bash
+git clone https://github.com/AmirBahadorAmiri/Rangarang.git
 ```
-ColorManager/
-├── index.php          Main page
-├── config.php         Config and database connection
-├── export.php         Export functionality
-├── src/
-│   ├── api.php        AJAX operations endpoint
-│   ├── database.php   PDO connection and schema
-│   ├── repository.php CRUD operations
-│   ├── helpers.php    Helper functions
-│   ├── color_tools.php Color conversion and analysis
-│   └── transfer.php   JSON export/import helpers
-├── assets/
-│   ├── style.css      Styles
-│   └── app.js         Frontend logic
-└── db/
-    └── seed.php       Sample data
-```
-
----
-
-## 🔌 API Endpoint
-
-All requests go to `src/api.php` via POST with CSRF token.
-
-| Action | Description | Parameters |
-|--------|-------------|------------|
-| `palette_create` | Create palette | name, description |
-| `palette_update` | Update palette | id, name, description |
-| `palette_delete` | Delete palette | id |
-| `color_add` | Add color | palette_id, hex, name |
-| `color_update` | Update color | id, hex, name |
-| `color_delete` | Delete color | id |
-| `color_favorite` | Toggle star | id |
-| `color_reorder` | Reorder colors | palette_id, ids[] |
-| `color_shade` | Lighten/darken | id, percent |
-| `palette_import` | Import palettes from JSON | data (JSON string) |
+2. Open Chrome and navigate to `chrome://extensions`.
+3. Enable **Developer mode** in the top-right corner.
+4. Click **Load unpacked** and select the `extension` folder.
+5. Click the Rangarang toolbar icon to open the app in a Chrome tab.
 
 ---
 
 ## 👨‍💻 Developer
-
-Developed by **Rangban Team**
+Developed by **Amir Bahador Amiri**
 
 > [!TIP]
-> For sample data, run `db/seed.php` in your browser.
-
----
-
-## 📄 License
-
-This project is released under the **MIT** License.
+> Run **Export all** to save a JSON backup before clearing browser data; clicking the toolbar icon always opens Rangarang in a full tab.

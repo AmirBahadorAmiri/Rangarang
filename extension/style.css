@@ -1,5 +1,5 @@
 /* ============================================================
-   رنگ‌بان — استایل اختصاصی
+   رنگارنگ — استایل اختصاصی
    تم روشن/تیره با لهجه‌های رنگی و شیشه‌ای (glassmorphism)
    ============================================================ */
 
@@ -644,3 +644,19 @@ body {
     .ws-title h2 { font-size: 20px; }
     #btn-search-toggle span, #btn-search-toggle kbd { display: none; }
 }
+
+/* ============ منوی خروجی (دکمهها) ============ */
+.dropdown button {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    background: none;
+    border: none;
+    color: var(--text-1);
+    font-family: inherit;
+    font-size: 13.5px;
+    text-align: right;
+    cursor: pointer;
+}
+.dropdown button:hover { background: var(--bg-3); }
+
