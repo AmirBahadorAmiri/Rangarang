@@ -73,6 +73,16 @@ git clone https://github.com/AmirBahadorAmiri/Rangarang.git
 
 ---
 
+## 📸 Screenshots
+
+The interface is fully RTL and Persian; this is a palette view in a Chrome tab.
+
+| 📸 Palette view |
+|:---:|
+| <img width="800" alt="Rangarang palette view with a right-to-left Persian interface" src="screenshot/screen.png" /> |
+
+---
+
 ## 👨‍💻 Developer
 Developed by **Amir Bahador Amiri**
 
